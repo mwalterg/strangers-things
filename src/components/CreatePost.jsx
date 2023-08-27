@@ -1,11 +1,46 @@
 import { useState } from 'react';
 
-export default function CreatePost() {
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState('')
-    const [location, setLocation] = useState('')
-    const [willDeliver, setWillDeliver] = useState(false)
+export default function CreatePost({ token }) {
+    const COHORT_NAME = '2302-acc-et-web-pt-a';
+    const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
+    
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [location, setLocation] = useState('');
+    const [willDeliver, setWillDeliver] = useState(false);
+
+    const handleCreatePost = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`${BASE_URL}/posts`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    post: {
+                        title,
+                        description,
+                        price,
+                        location,
+                        willDeliver
+                    }
+                })
+            });
+
+            if (response.ok) {
+                // Handle successful post creation
+                // You might want to refresh the posts list or update the UI
+            } else {
+                console.error('Failed to create post');
+            }
+        } catch (err) {
+            console.error('An error occurred while creating a post', err);
+        }
+    };
     return (
         <form>
             <label htmlFor="title">Title</label>
