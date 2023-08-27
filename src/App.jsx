@@ -6,7 +6,6 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Dashboard from "./pages/dashboard"
 import NavBar from "./components/NavBar"
-import CreatePost from './components/CreatePost'
 import './App.css'
 
 function App() {
