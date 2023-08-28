@@ -10,6 +10,7 @@ import './App.css'
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'))
+  console.log('Token in App:', token);
 
   const handleLogout = () => {
     localStorage.removeItem('token');

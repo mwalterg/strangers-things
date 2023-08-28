@@ -13,7 +13,8 @@ export default function Login({ setToken }) {
             const response = await fetch(`${BASE_URL}/users/login`, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     user: {
@@ -27,7 +28,9 @@ export default function Login({ setToken }) {
 
             if (response.ok) {
                 // Successful login
-                setToken(result.data.token); // Update token in the parent component
+                console.log('Token:', result.data.token);
+                setToken(result.data.token);
+                localStorage.setItem('token', result.data.token);
             } else {
                 // Unsuccessful login
                 console.error(result.error);
