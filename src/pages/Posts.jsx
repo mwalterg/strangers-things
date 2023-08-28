@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import CreatePost from '../components/CreatePost'
 
 export default function Posts({ token }) {
     const COHORT_NAME = '2302-acc-et-web-pt-a';
@@ -45,6 +46,7 @@ export default function Posts({ token }) {
     return (
         <div>
             <h1>Posts</h1>
+            <CreatePost token={token} />
             <div className="posts-list">
                 {posts.map(post => (
                     <div key={post._id} className="post-item">

@@ -42,7 +42,7 @@ export default function CreatePost({ token }) {
         }
     };
     return (
-        <form>
+        <>
             <label htmlFor="title">Title</label>
             <input
                 type="text"
@@ -78,7 +78,7 @@ export default function CreatePost({ token }) {
                 value={willDeliver}
                 onChange={(e) => setWillDeliver(e.target.value)}
             />
-            <button type="submit">Create Post</button>
-        </form>
+            <button type="submit" onClick={handleCreatePost}>Create Post</button>
+        </>
     )
 }

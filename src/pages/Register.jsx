@@ -9,13 +9,14 @@ export default function Register({ setToken }) {
     const [error, setError] = useState('');
 
     const handleRegister = async (e) => {
-        e.preventDefault();
+        
 
         try {
             const response = await fetch(`${BASE_URL}/users/register`, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     user: {
@@ -29,7 +30,9 @@ export default function Register({ setToken }) {
 
             if (response.ok) {
                 // Successful registration
+                console.log('Token:', result.data.token)
                 setToken(result.data.token);
+                localStorage.setItem('token', result.data.token);
             } else {
                 setError(result.error.message);
             }
@@ -42,7 +45,20 @@ export default function Register({ setToken }) {
         <div>
             <h1>Register</h1>
             <form onSubmit={handleRegister}>
-                {/* ... form fields for username and password */}
+                <label htmlFor="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
                 <button type="submit">Register</button>
             </form>
             {error && <p>Error: {error}</p>}
