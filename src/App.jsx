@@ -4,7 +4,7 @@ import Posts from "./pages/Posts"
 import Profile from "./pages/Profile"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-import Dashboard from "./pages/dashboard"
+import Dashboard from "./pages/Dashboard"
 import NavBar from "./components/NavBar"
 import './App.css'
 
