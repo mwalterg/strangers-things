@@ -32,8 +32,8 @@ export default function CreatePost({ token }) {
             });
 
             if (response.ok) {
-                // Handle successful post creation
-                // You might want to refresh the posts list or update the UI
+                
+                
             } else {
                 console.error('Failed to create post');
             }
